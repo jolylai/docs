@@ -74,7 +74,7 @@ public
 yarn-error.log
 
 # config files
-.env.*
+# .env.*
 !.env.example
 
 # Cypress
