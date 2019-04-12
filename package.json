@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "serve": "gatsby build && NODE_ENV=production gatsby serve",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "dev": "gatsby develop",
     "lint": "eslint . --ext .js --cache",
     "posttest": "yarn lint",

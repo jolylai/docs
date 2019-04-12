@@ -197,6 +197,7 @@ if (SERVICE_WORKER_KILL_SWITCH) {
 }
 
 module.exports = {
+    pathPrefix: `/docs`,
     siteMetadata: {
         title: `Ghost Docs`,
         siteUrl: process.env.SITE_URL || `https://docs.ghost.org`,
