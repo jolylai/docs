@@ -1,9 +1,10 @@
 ---
-title: "GitHub Pages Deployment"
-date: "2019-04-12"
+title: 'GitHub Pages Deployment'
+date: '2019-04-12'
 keywords:
-    - "travis"
-    - "gh-pages"
+    - 'travis'
+    - 'gh-pages'
+sidebar: 'travis'
 ---
 
 使用 `travis`[👉](https://docs.travis-ci.com/user/deployment/pages/) 去自动化部署项目到 `gh-pages` 上，这样当你修改完项目后，将代码上传到 github 上时，就能将最新的代码自动发布到 `gh-pages` 上

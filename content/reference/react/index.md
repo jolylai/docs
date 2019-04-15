@@ -7,6 +7,8 @@ keywords:
     - 'admin api'
     - 'javascript'
     - 'ghost api'
+
+sidebar: 'react'
 ---
 
 It's possible to create and manage your content using the Ghost Admin API. Our content management interface, Ghost Admin, uses the Admin API - which means that everything Ghost Admin can do is also possible with the API, and a whole lot more!
