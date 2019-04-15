@@ -1,23 +1,31 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql, Link } from 'gatsby';
 
-import { Layout } from '../../components/common/layout'
-import { Spirit } from '../../styles/spirit-styles'
-import { MetaData, getMetaImageUrls } from '../../components/common/meta'
-import { FAQLink, FAQTagList } from '../../components/faq'
+import { Layout } from '../../components/common/layout';
+import { Spirit } from '../../styles/spirit-styles';
+import { MetaData, getMetaImageUrls } from '../../components/common/meta';
+import { FAQLink, FAQTagList } from '../../components/faq';
 
 const FAQTags = ({ data, location, pageContext }) => {
-    const posts = data.allGhostPost.edges
-    const { tagURL, tagName, tagDescription, tagImage, tagMetaTitle, tagMetaDescription, section } = pageContext
+    const posts = data.allGhostPost.edges;
+    const {
+        tagURL,
+        tagName,
+        tagDescription,
+        tagImage,
+        tagMetaTitle,
+        tagMetaDescription,
+        section,
+    } = pageContext;
 
     // Add meta title and description or this page here to overwrite the site meta data as set in the config
-    const title = tagMetaTitle || `FAQ - ${tagName} - Ghost`
-    const description = tagMetaDescription || tagDescription || ``
-    const imageUrl = tagImage || getMetaImageUrls(section)
+    const title = tagMetaTitle || `FAQ - ${tagName} - Ghost`;
+    const description = tagMetaDescription || tagDescription || ``;
+    const imageUrl = tagImage || getMetaImageUrls(section);
 
     return (
-        <>
+        <React.Fragment>
             <MetaData
                 data={data}
                 location={location}
@@ -30,17 +38,21 @@ const FAQTags = ({ data, location, pageContext }) => {
                 <div className="bg-faq bb b--whitegrey">
                     <div className={`${Spirit.page.xl} pt-vw7 pt-vw1-ns pb-vw1`}>
                         <h1 className={`${Spirit.h4} white`}>
-                            <Link to="/faq/" className="link dim white fw3">Frequently Asked Questions</Link>
+                            <Link to="/faq/" className="link dim white fw3">
+                                Frequently Asked Questions
+                            </Link>
                             <span className="white titleslash-white pl4 ml4 relative">
-                                <Link to={tagURL} className="link dim white">{tagName}</Link>
+                                <Link to={tagURL} className="link dim white">
+                                    {tagName}
+                                </Link>
                             </span>
                         </h1>
                     </div>
                 </div>
-                <div className={`${Spirit.page.xl} grid-12 pb5` }>
+                <div className={`${Spirit.page.xl} grid-12 pb5`}>
                     <div className="bg-white shadow-2 br4 mt10 pa5 pa15-ns pt10-ns pb12-ns col-12 col-8-ns">
                         {posts.map(({ node }) => (
-                            <FAQLink key={node.id} post={node} section={section}/>
+                            <FAQLink key={node.id} post={node} section={section} />
                         ))}
                     </div>
                     <div className="col-12 col-4-ns pa5 pa15-ns pt10-ns mt11-ns">
@@ -48,9 +60,9 @@ const FAQTags = ({ data, location, pageContext }) => {
                     </div>
                 </div>
             </Layout>
-        </>
-    )
-}
+        </React.Fragment>
+    );
+};
 
 FAQTags.propTypes = {
     data: PropTypes.shape({
@@ -75,9 +87,9 @@ FAQTags.propTypes = {
         tagMetaTitle: PropTypes.string,
         tagImage: PropTypes.string,
     }).isRequired,
-}
+};
 
-export default FAQTags
+export default FAQTags;
 
 export const tagsQuery = graphql`
     query($tagSlug: String!) {
@@ -85,9 +97,9 @@ export const tagsQuery = graphql`
             ...SiteMetaFields
         }
         allGhostPost(
-            sort: { order: DESC, fields: [published_at] },
-            limit: 100,
-            filter: {tags: {elemMatch: {slug: {eq: $tagSlug}}}}
+            sort: { order: DESC, fields: [published_at] }
+            limit: 100
+            filter: { tags: { elemMatch: { slug: { eq: $tagSlug } } } }
         ) {
             edges {
                 node {
@@ -96,4 +108,4 @@ export const tagsQuery = graphql`
             }
         }
     }
-`
+`;

@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
-import { Spirit } from "../styles/spirit-styles";
-import { Layout } from "../components/common/layout";
-import { APICard } from "../components/api";
-import { MetaData, getMetaImageUrls } from "../components/common/meta";
+import { Spirit } from '../styles/spirit-styles';
+import { Layout } from '../components/common/layout';
+import { APICard } from '../components/api';
+import { MetaData, getMetaImageUrls } from '../components/common/meta';
 
 const APIPage = ({ data, location }) => {
     // Add meta title and description or this page here to overwrite the site meta data as set in the config
-    const title = `API Reference - Ghost`;
+    const title = `Reference`;
     const description = `Comprehensive documentation of API clients, tools and libraries for working with Ghost.`;
     const imageUrl = getMetaImageUrls();
 
@@ -19,7 +19,7 @@ const APIPage = ({ data, location }) => {
     };
 
     return (
-        <>
+        <React.Fragment>
             <MetaData
                 data={data}
                 location={location}
@@ -32,7 +32,7 @@ const APIPage = ({ data, location }) => {
                 <section className="bg-api-reference">
                     <div className={`${Spirit.page.xl} tc-ns pt-vw6 pt-vw5-ns pb-vw5 white`}>
                         <h1 className={`${Spirit.sectionHeading} gh-integration-header-shadow`}>
-                            API Reference
+                            Reference
                         </h1>
                         <p className={Spirit.sectionSubHeading}>
                             Clients, tools and libraries for working with Ghost
@@ -44,6 +44,29 @@ const APIPage = ({ data, location }) => {
                     <div className="grid-12">
                         <div className={sectionStyles.headingContainer}>
                             <h2 id="frontend-sdk" className={`${Spirit.h3} pt20 nt20`}>
+                                Baisc
+                            </h2>
+                            <p className={`${Spirit.small} midgrey-l2 mt2`}>
+                                Frameworks for working with the Ghost API to build a publication
+                                website
+                            </p>
+                        </div>
+                        <div className={sectionStyles.cardContainer}>
+                            <APICard to="/reference/html/" icon="html">
+                                HTML
+                            </APICard>
+                            <APICard to="/reference/css/" icon="css">
+                                CSS
+                            </APICard>
+                            <APICard to="/reference/javascript/" icon="javascript-logo">
+                                JavaScript
+                            </APICard>
+                        </div>
+                    </div>
+
+                    <div className="grid-12 mt-vw4 mt20-ns">
+                        <div className={sectionStyles.headingContainer}>
+                            <h2 id="frontend-sdk" className={`${Spirit.h3} pt20 nt20`}>
                                 Frontend Frameworks
                             </h2>
                             <p className={`${Spirit.small} midgrey-l2 mt2`}>
@@ -52,11 +75,30 @@ const APIPage = ({ data, location }) => {
                             </p>
                         </div>
                         <div className={sectionStyles.cardContainer}>
-                            <APICard to="/api/gatsby/" icon="gatsby-logo">
+                            <APICard to="/reference/gatsby/" icon="gatsby-logo">
                                 Gatsby
                             </APICard>
-                            <APICard to="/api/react/" icon="react-logo">
+                            <APICard to="/reference/react/" icon="react-logo">
                                 React
+                            </APICard>
+                            <APICard to="/reference/graphql/" icon="graphql">
+                                React
+                            </APICard>
+                        </div>
+                    </div>
+
+                    <div className="grid-12 mt-vw4 mt20-ns">
+                        <div className={sectionStyles.headingContainer}>
+                            <h2 id="tools" className={`${Spirit.h3} pt20 nt20`}>
+                                Database
+                            </h2>
+                            <p className={`${Spirit.small} midgrey-l2 mt2`}>
+                                Utilities to help build and manage Ghost
+                            </p>
+                        </div>
+                        <div className={sectionStyles.cardContainer}>
+                            <APICard to="/reference/prettier/" icon="mongo">
+                                Mongoo
                             </APICard>
                         </div>
                     </div>
@@ -67,17 +109,17 @@ const APIPage = ({ data, location }) => {
                                 Tools
                             </h2>
                             <p className={`${Spirit.small} midgrey-l2 mt2`}>
-                                Utilities to help build and manage Ghost
+                                Utilities to help develop
                             </p>
                         </div>
                         <div className={sectionStyles.cardContainer}>
-                            <APICard to="/api/travisci/" icon="travisci-logo">
-                                Travis-CI
+                            <APICard to="/reference/travis/" icon="travis">
+                                Travis
                             </APICard>
-                            <APICard to="/api/prettier/" icon="prettier-logo">
+                            <APICard to="/reference/prettier/" icon="prettier-logo">
                                 Prettier
                             </APICard>
-                            <APICard to="/api/eslint/" icon="eslint-logo">
+                            <APICard to="/reference/eslint/" icon="eslint-logo">
                                 Eslint
                             </APICard>
                         </div>
@@ -96,14 +138,14 @@ const APIPage = ({ data, location }) => {
                             </h4>
                         </div>
                         <div className={sectionStyles.cardContainer}>
-                            <APICard to="/api/javascript/" icon="javascript-logo">
-                                JavaScript
+                            <APICard to="/reference/javascript/" icon="javascript-logo">
+                                Pomelo-UI
                             </APICard>
                         </div>
                     </div>
                 </div>
             </Layout>
-        </>
+        </React.Fragment>
     );
 };
 
