@@ -1,58 +1,51 @@
 module.exports = {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
     parserOptions: {
         ecmaVersion: 6,
         ecmaFeatures: {
             jsx: true,
-            experimentalObjectRestSpread: true
-        }
+            experimentalObjectRestSpread: true,
+        },
     },
-    plugins: ["ghost", "react"],
-    extends: [
-        "plugin:ghost/node",
-        "plugin:ghost/ember",
-        "plugin:react/recommended"
-    ],
+    plugins: ['ghost', 'react'],
+    extends: ['plugin:ghost/node', 'plugin:ghost/ember', 'plugin:react/recommended'],
     settings: {
         react: {
-            createClass: "createReactClass",
-            pragma: "React",
-            version: "detect",
-            flowVersion: "0.53"
+            createClass: 'createReactClass',
+            pragma: 'React',
+            version: 'detect',
+            flowVersion: '0.53',
         },
-        propWrapperFunctions: ["forbidExtraProps"]
+        propWrapperFunctions: ['forbidExtraProps'],
     },
     rules: {
-        "ghost/sort-imports-es6-autofix/sort-imports-es6": "off",
-        "ghost/ember/use-ember-get-and-set": "off",
-        "no-console": "off",
-        "no-inner-declarations": "off",
-        "valid-jsdoc": "off",
-        "require-jsdoc": "off",
-        quotes: ["error", "backtick"],
-        "consistent-return": ["error"],
-        "arrow-body-style": [
-            "error",
-            "as-needed",
-            { requireReturnForObjectLiteral: true }
-        ],
-        "jsx-quotes": ["error", "prefer-double"],
-        "object-curly-spacing": ["error", "always"],
-        "comma-dangle": [
-            "error",
+        'ghost/sort-imports-es6-autofix/sort-imports-es6': 'off',
+        'ghost/ember/use-ember-get-and-set': 'off',
+        'no-console': 'off',
+        'no-inner-declarations': 'off',
+        'valid-jsdoc': 'off',
+        'require-jsdoc': 'off',
+        quotes: ['error', 'backtick'],
+        'consistent-return': ['error'],
+        'arrow-body-style': ['error', 'as-needed', { requireReturnForObjectLiteral: true }],
+        'arrow-parens': ['error', 'as-needed'],
+        'jsx-quotes': ['error', 'prefer-double'],
+        'object-curly-spacing': ['error', 'always'],
+        'comma-dangle': [
+            'error',
             {
-                arrays: "always-multiline",
-                objects: "always-multiline",
-                imports: "always-multiline",
-                exports: "always-multiline",
-                functions: "ignore"
-            }
+                arrays: 'always-multiline',
+                objects: 'always-multiline',
+                imports: 'always-multiline',
+                exports: 'always-multiline',
+                functions: 'ignore',
+            },
         ],
-        "react/prop-types": [
-            "error",
+        'react/prop-types': [
+            'error',
             {
-                ignore: ["children"]
-            }
-        ]
-    }
+                ignore: ['children'],
+            },
+        ],
+    },
 };

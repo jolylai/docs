@@ -23,7 +23,7 @@ const ghostQueryConfig = [
         tagsTemplate: `./src/templates/ghost/integration-archive.js`,
         indexName: `integration`,
     },
-]
+];
 
 const markdownQueryConfig = [
     {
@@ -41,7 +41,7 @@ const markdownQueryConfig = [
         indexName: `api`,
         niceName: `API Reference`,
     },
-]
+];
 
 module.exports = {
     defaultMarkdownSection: `setup`,
@@ -50,7 +50,7 @@ module.exports = {
     searchConfig: markdownQueryConfig
         .concat(ghostQueryConfig)
         .reduce((acc, { indexName, niceName }) => {
-            acc[indexName] = niceName
-            return acc
+            acc[indexName] = niceName;
+            return acc;
         }, {}),
-}
+};

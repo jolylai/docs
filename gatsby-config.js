@@ -13,7 +13,9 @@ require(`dotenv`).config({
 });
 
 if (!process.env.GHOST_API_URL || !process.env.GHOST_API_KEY) {
-    throw new Error(`GHOST_API_URL and GHOST_API_KEY are required to build. Check the CONTRIBUTING guide.`);
+    throw new Error(
+        `GHOST_API_URL and GHOST_API_KEY are required to build. Check the CONTRIBUTING guide.`
+    );
 }
 
 const SERVICE_WORKER_KILL_SWITCH = process.env.SERVICE_WORKER_KILL_SWITCH === `true` || false;
@@ -141,7 +143,16 @@ const plugins = [
                     sitemap: `pages`,
                 },
             },
-            exclude: [`/dev-404-page`, `/404`, `/404.html`, `/offline-plugin-app-shell-fallback`, `/data-schema`, `/data-schema-2`, `/v0.11/README`, `/README`],
+            exclude: [
+                `/dev-404-page`,
+                `/404`,
+                `/404.html`,
+                `/offline-plugin-app-shell-fallback`,
+                `/data-schema`,
+                `/data-schema-2`,
+                `/v0.11/README`,
+                `/README`,
+            ],
         },
     },
     `gatsby-plugin-force-trailing-slashes`,
@@ -172,8 +183,11 @@ const plugins = [
     },
 ];
 
-const runAlgoliaBuild = () => (process.env.INCOMING_HOOK_TITLE && process.env.INCOMING_HOOK_TITLE === `Algolia`) || process.env.ALGOLIA;
-const hasAlgoliaKey = () => process.env.ALGOLIA_ADMIN_KEY && !process.env.ALGOLIA_ADMIN_KEY.match(/<key>/);
+const runAlgoliaBuild = () =>
+    (process.env.INCOMING_HOOK_TITLE && process.env.INCOMING_HOOK_TITLE === `Algolia`) ||
+    process.env.ALGOLIA;
+const hasAlgoliaKey = () =>
+    process.env.ALGOLIA_ADMIN_KEY && !process.env.ALGOLIA_ADMIN_KEY.match(/<key>/);
 
 if (runAlgoliaBuild() && hasAlgoliaKey()) {
     plugins.push({
