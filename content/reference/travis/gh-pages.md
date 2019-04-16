@@ -32,3 +32,7 @@ deploy:
     on:
         branch: master
 ```
+
+## 设置 `Github` token
+
+[Setting](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)

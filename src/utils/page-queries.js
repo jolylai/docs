@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
 export const siteMetaFields = graphql`
     fragment SiteMetaFields on Site {
@@ -8,7 +8,7 @@ export const siteMetaFields = graphql`
             description
         }
     }
-`
+`;
 
 export const markdownFields = graphql`
     fragment MarkdownFields on MarkdownRemark {
@@ -37,7 +37,7 @@ export const markdownFields = graphql`
         excerpt
         fileAbsolutePath
     }
-`
+`;
 
 // Used for single pages
 export const ghostPostFields = graphql`
@@ -124,7 +124,7 @@ export const ghostPostFields = graphql`
         codeinjection_head
         comment_id
     }
-`
+`;
 
 // Used for index pages
 export const ghostPostListFields = graphql`
@@ -148,24 +148,24 @@ export const ghostPostListFields = graphql`
         updated_at
 
         tags {
-          name
-          slug
-          visibility
+            name
+            slug
+            visibility
         }
         authors {
-          name
-          slug
+            name
+            slug
         }
     }
-`
+`;
 
 // Used for tags archive pages
 export const ghostTagListFields = graphql`
     fragment GhostTagListFields on GhostPost {
         tags {
-          name
-          slug
-          visibility
+            name
+            slug
+            visibility
         }
     }
-`
+`;

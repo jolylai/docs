@@ -11,7 +11,7 @@ const IntegrationsPage = ({ data, location }) => {
     const description = `Keep your stack aligned and integrate your most used tools & apps with your Ghost site: automation, analytics, marketing, support and much more! 👉`;
     const imageUrl = getMetaImageUrls(`integrations`);
 
-    const posts = data.allGhostPost.edges;
+    const posts = data.allBookmarksYaml.edges;
 
     return (
         <React.Fragment>
@@ -37,7 +37,7 @@ IntegrationsPage.propTypes = {
                 description: PropTypes.string.isRequired,
             }).isRequired,
         }).isRequired,
-        allGhostPost: PropTypes.object.isRequired,
+        allBookmarksYaml: PropTypes.object.isRequired,
     }).isRequired,
     location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
@@ -51,14 +51,14 @@ export const pageQuery = graphql`
         site {
             ...SiteMetaFields
         }
-        allGhostPost(
-            sort: { order: ASC, fields: [published_at] }
-            limit: 100
-            filter: { tags: { elemMatch: { slug: { eq: "hash-integration" } } } }
-        ) {
+        allBookmarksYaml {
             edges {
                 node {
-                    ...GhostPostListFields
+                    id
+                    title
+                    image
+                    slug
+                    tags
                 }
             }
         }

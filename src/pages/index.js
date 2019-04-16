@@ -11,12 +11,12 @@ import { MetaData, getMetaImageUrls } from '../components/common/meta';
 
 const HomePage = ({ data, location }) => {
     // Add meta title and description for this page here to overwrite the site meta data as set in the config
-    const title = ` Docs`;
+    const title = `Docs`;
     const description = `Get familiar with Ghost - the open source professional publishing platform.  Install guides, tutorials, API docs and FAQs.`;
     const imageUrl = getMetaImageUrls();
 
     return (
-        <>
+        <React.Fragment>
             <MetaData
                 data={data}
                 location={location}
@@ -38,18 +38,14 @@ const HomePage = ({ data, location }) => {
                                 to="/api/"
                                 className={`${Spirit.h3} link darkgrey hover-midgrey flex-grow-0`}
                             >
-                                API Reference
+                                Reference
                             </Link>
 
                             <Box
                                 className="mt5 tdn flex-auto flex flex-column items-stretch"
                                 elevation="1"
                             >
-                                <HomeAPIBox
-                                    to="/api/#frontend-sdk"
-                                    title="Frontend SDKs"
-                                    icon="sdks"
-                                >
+                                <HomeAPIBox to="/api/#frontend-sdk" title="React" icon="sdks">
                                     Frameworks for working with the Ghost API to build a publication
                                     website
                                 </HomeAPIBox>
@@ -234,7 +230,7 @@ const HomePage = ({ data, location }) => {
                     </section>
                 </div>
             </Layout>
-        </>
+        </React.Fragment>
     );
 };
 

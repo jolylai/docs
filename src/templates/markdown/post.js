@@ -63,8 +63,7 @@ class Post extends React.Component {
         const { location } = this.props;
         const post = this.props.data.markdownRemark;
 
-        // const githubLink = getGitHubLink(post.fileAbsolutePath);
-        const githubLink = false;
+        const githubLink = getGitHubLink(post.fileAbsolutePath);
 
         const imageUrl = getMetaImageUrls();
         const sideBarLayout = {};

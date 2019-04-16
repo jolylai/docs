@@ -31,6 +31,7 @@ module.exports = {
         'arrow-parens': ['error', 'as-needed'],
         'jsx-quotes': ['error', 'prefer-double'],
         'object-curly-spacing': ['error', 'always'],
+        indent: ['error', 4, { SwitchCase: 1 }],
         'comma-dangle': [
             'error',
             {

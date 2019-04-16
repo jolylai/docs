@@ -68,6 +68,12 @@ const plugins = [
     },
     `gatsby-transformer-yaml`,
     {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+            path: `${__dirname}/src/data/`,
+        },
+    },
+    {
         resolve: `gatsby-source-ghost`,
         options: {
             apiUrl: `${process.env.GHOST_API_URL}`,
@@ -81,8 +87,8 @@ const plugins = [
     {
         resolve: `gatsby-plugin-manifest`,
         options: {
-            name: `Ghost Docs`,
-            short_name: `Ghost`,
+            name: `Docs`,
+            short_name: `Docs`,
             start_url: `/`,
             background_color: `#343f44`,
             theme_color: `#343f44`,
@@ -184,9 +190,12 @@ const plugins = [
 ];
 
 const runAlgoliaBuild = () =>
+    // eslint-disable-next-line
     (process.env.INCOMING_HOOK_TITLE && process.env.INCOMING_HOOK_TITLE === `Algolia`) ||
     process.env.ALGOLIA;
+
 const hasAlgoliaKey = () =>
+    // eslint-disable-next-line
     process.env.ALGOLIA_ADMIN_KEY && !process.env.ALGOLIA_ADMIN_KEY.match(/<key>/);
 
 if (runAlgoliaBuild() && hasAlgoliaKey()) {
@@ -213,7 +222,7 @@ if (SERVICE_WORKER_KILL_SWITCH) {
 module.exports = {
     pathPrefix: `/docs`,
     siteMetadata: {
-        title: `Ghost Docs`,
+        title: `Docs`,
         siteUrl: process.env.SITE_URL || `https://docs.ghost.org`,
         description: `Everything you need to know about working with the Ghost professional publishing platform.`,
     },

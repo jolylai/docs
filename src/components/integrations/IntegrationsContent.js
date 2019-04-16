@@ -1,68 +1,82 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import _ from 'lodash'
+import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-import { Layout } from '../common/layout'
-import { NavBar } from '../common/'
-import IntegrationBox from "./IntegrationBox"
-import { Spirit } from '../../styles/spirit-styles'
-import { IntegrationIndex, IntegrationSearchBox, IntegrationResults } from './integration-search'
-import IntegrationsTagList from './IntegrationsTagList'
+import { Layout } from '../common/layout';
+import { NavBar } from '../common/';
+import IntegrationBox from './IntegrationBox';
+import { Spirit } from '../../styles/spirit-styles';
+import { IntegrationIndex, IntegrationSearchBox, IntegrationResults } from './integration-search';
+import IntegrationsTagList from './IntegrationsTagList';
 
 class IntegrationsContent extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             posts: this.props.posts,
             activeSorting: `date`,
             searchActive: false,
+        };
+
+        this.searchSwitch = this.searchSwitch.bind(this);
+    }
+
+    static getDerivedStateFromProps(props) {
+        const { posts, location } = props;
+        let newPosts = posts;
+        if (location.search && location.search !== `?all`) {
+            const tag = location.search.substr(1);
+            newPosts = posts.filter(post => {
+                const tags = post.node.tags.map(item => item.toLowerCase());
+                return tags.includes(tag);
+            });
         }
 
-        this.searchSwitch = this.searchSwitch.bind(this)
+        return { posts: newPosts };
     }
 
     searchSwitch(val) {
         // a passed argument needs to win over the toggle
-        this.setState((state) => {
+        this.setState(state => {
             return {
                 searchActive: val ? val : !state.searchActive,
-            }
-        })
+            };
+        });
     }
 
     sortBy(field) {
-        let firstSortField
-        let secondSortField
+        let firstSortField;
+        let secondSortField;
 
         switch (field) {
-        case `date`:
-            firstSortField = `node.published_at`
-            secondSortField = `node.title`
-            this.setState(() => {
-                return { activeSorting: `date` }
-            })
-            break
-        case `title`:
-            firstSortField = `node.title`
-            secondSortField = `node.published_at`
-            this.setState(() => {
-                return { activeSorting: `title` }
-            })
-            break
+            case `date`:
+                firstSortField = `node.published_at`;
+                secondSortField = `node.title`;
+                this.setState(() => {
+                    return { activeSorting: `date` };
+                });
+                break;
+            case `title`:
+                firstSortField = `node.title`;
+                secondSortField = `node.published_at`;
+                this.setState(() => {
+                    return { activeSorting: `title` };
+                });
+                break;
         }
 
-        const sortedPosts = _.sortBy(this.state.posts, [firstSortField, secondSortField])
+        const sortedPosts = _.sortBy(this.state.posts, [firstSortField, secondSortField]);
 
         this.setState(() => {
-            return { posts: sortedPosts }
-        })
+            return { posts: sortedPosts };
+        });
     }
 
     render() {
-        const { posts } = this.state
+        const { posts } = this.state;
 
         return (
-            <>
+            <React.Fragment>
                 <Layout
                     headerDividerStyle="shadow"
                     header={
@@ -72,8 +86,16 @@ class IntegrationsContent extends React.Component {
                                     <NavBar theme="light" />
                                 </header>
                                 <div className="pa-vw4 tc white">
-                                    <h1 className={`${Spirit.sectionHeading} gh-integration-header-shadow`}>Ghost Integrations</h1>
-                                    <p className={ Spirit.sectionSubHeading }>All your favourite apps and tools, integrated with Ghost</p>
+                                    <h1
+                                        className={`${
+                                            Spirit.sectionHeading
+                                        } gh-integration-header-shadow`}
+                                    >
+                                        Bookmarks
+                                    </h1>
+                                    <p className={Spirit.sectionSubHeading}>
+                                        All your favourite apps and tools.
+                                    </p>
                                     <IntegrationSearchBox searchActive={this.searchSwitch} />
                                 </div>
                             </div>
@@ -86,8 +108,28 @@ class IntegrationsContent extends React.Component {
                                 <div className="gh-integration-sidebar flex-shrink-0 w50 mr5 dn db-ns">
                                     <div className="flex flex-column mb6" data-cy="sort">
                                         <h3 className="ma0 mb2">Sort by</h3>
-                                        <a href="#" className={`link pa2 pl0 ${this.state.activeSorting === `date` ? `blue fw6` : `midgrey`}`} onClick={this.sortBy.bind(this, `date`)}>Most popular</a>
-                                        <a href="#" className={`link pa2 pl0 ${this.state.activeSorting === `title` ? `blue fw6` : `midgrey`}`} onClick={this.sortBy.bind(this, `title`)}>A – Z</a>
+                                        <a
+                                            href="#"
+                                            className={`link pa2 pl0 ${
+                                                this.state.activeSorting === `date`
+                                                    ? `blue fw6`
+                                                    : `midgrey`
+                                            }`}
+                                            onClick={this.sortBy.bind(this, `date`)}
+                                        >
+                                            Most popular
+                                        </a>
+                                        <a
+                                            href="#"
+                                            className={`link pa2 pl0 ${
+                                                this.state.activeSorting === `title`
+                                                    ? `blue fw6`
+                                                    : `midgrey`
+                                            }`}
+                                            onClick={this.sortBy.bind(this, `title`)}
+                                        >
+                                            A – Z
+                                        </a>
                                     </div>
                                     <div className="flex flex-column mb6">
                                         <IntegrationsTagList
@@ -96,22 +138,27 @@ class IntegrationsContent extends React.Component {
                                         />
                                     </div>
                                 </div>
-                                {this.state.searchActive ?
-                                    <IntegrationResults /> :
+                                {this.state.searchActive ? (
+                                    <IntegrationResults />
+                                ) : (
                                     <>
                                         <div className="gh-integrations w-100">
                                             {posts.map(({ node }) => (
-                                                <IntegrationBox key={node.id} post={node} section="integrations" />
+                                                <IntegrationBox
+                                                    key={node.id}
+                                                    post={node}
+                                                    section="bookmark"
+                                                />
                                             ))}
                                         </div>
                                     </>
-                                }
+                                )}
                             </div>
                         </div>
                     </IntegrationIndex>
                 </Layout>
-            </>
-        )
+            </React.Fragment>
+        );
     }
 }
 
@@ -120,6 +167,6 @@ IntegrationsContent.propTypes = {
     location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
     }).isRequired,
-}
+};
 
-export default IntegrationsContent
+export default IntegrationsContent;
