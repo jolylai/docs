@@ -8,7 +8,7 @@ keywords:
     - 'javascript'
     - 'ghost api'
 
-sidebar: 'react'
+sidebar: 'javascript'
 ---
 
 It's possible to create and manage your content using the Ghost Admin API. Our content management interface, Ghost Admin, uses the Admin API - which means that everything Ghost Admin can do is also possible with the API, and a whole lot more!
@@ -17,3 +17,4 @@ Secure authentication is available either as a User with role-based permissions,
 
 The API is RESTful with predictable resource URLs, standard HTTP verbs, response codes and authentication used throughout. Requests and responses are JSON-encoded with consistent patterns and inline relations and responses are customisable using powerful query parameters.
 
+## API Clients
