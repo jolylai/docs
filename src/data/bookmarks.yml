@@ -1,20 +1,34 @@
 - title: 'algolia'
   image: 'https://www.algolia.com/doc/assets/images/favicon/white/favicon-73f8660c.ico'
   slug: 'https://www.algolia.com/doc/api-client/getting-started/install/javascript/'
-  published_at: '2018-01-01'
   tags:
     - 'JS'
-- title: 'vscode-icons'
-  image: 'https://avatars1.githubusercontent.com/u/25044327?s=200&v=4'
-  slug: 'https://github.com/vscode-icons/vscode-icons'
-  published_at: '2018-01-01'
-  tags:
-    - 'Github'
-    - 'Icon'
-    - 'SVG'
 - title: '30 seconds of code'
   image: 'https://30secondsofcode.org/logos/logo_256.png'
   slug: 'https://30secondsofcode.org/'
   published_at: '2019-04-16'
   tags:
     - 'JS'
+- title: 'vscode-icons'
+  image: 'https://avatars1.githubusercontent.com/u/25044327?s=200&v=4'
+  slug: 'https://github.com/vscode-icons/vscode-icons'
+  tags:
+    - 'Icon'
+    - 'Github'
+- title: 'Font Awesome'
+  image: 'https://fontawesome.com/images/favicons/favicon-32x32.png'
+  slug: 'https://fontawesome.com/'
+  tags:
+    - 'Icon'
+    - 'Github'
+- title: 'tabler-react'
+  image: 'http://tabler-react.com/demo/brand/tabler.svg'
+  slug: 'https://github.com/tabler/tabler-react'
+  tags:
+    - 'UI'
+    - 'Github'
+- title: 'MATERIAL-UI'
+  image: 'https://material-ui.com/static/images/material-ui-logo.svg'
+  slug: 'https://material-ui.com/'
+  tags:
+    - 'UI'

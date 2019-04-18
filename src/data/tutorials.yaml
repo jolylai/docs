@@ -1,0 +1,7 @@
+- title: '跨域'
+  image: 'https://www.algolia.com/doc/assets/images/favicon/white/favicon-73f8660c.ico'
+  slug: 'cros'
+  excerpt: '概药'
+  published_at: '2018-01-01'
+  tags:
+    - 'JS'

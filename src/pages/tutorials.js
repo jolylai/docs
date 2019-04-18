@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
-import { Spirit } from "../styles/spirit-styles";
-import { Layout } from "../components/common/layout";
-import { TutorialCard } from "../components/tutorials";
-import { MetaData, getMetaImageUrls } from "../components/common/meta";
+import { Spirit } from '../styles/spirit-styles';
+import { Layout } from '../components/common/layout';
+import { TutorialCard } from '../components/tutorials';
+import { MetaData, getMetaImageUrls } from '../components/common/meta';
 
 const TutorialsPage = ({ data, location }) => {
     // Add meta title and description for this page here to overwrite the site meta data as set in the config
@@ -13,10 +13,10 @@ const TutorialsPage = ({ data, location }) => {
     const description = `Customise your Ghost publication to suit your needs with full tutorial guides for a variety of use-cases. Config, themes, dynamic routing and more 👉`;
     const imageUrl = getMetaImageUrls(`tutorials`);
 
-    const posts = data.allGhostPost.edges;
+    const posts = data.allTutorialsYaml.edges;
 
     return (
-        <>
+        <React.Fragment>
             <MetaData
                 data={data}
                 location={location}
@@ -44,7 +44,7 @@ const TutorialsPage = ({ data, location }) => {
                     </section>
                 </div>
             </Layout>
-        </>
+        </React.Fragment>
     );
 };
 
@@ -71,14 +71,14 @@ export const pageQuery = graphql`
         site {
             ...SiteMetaFields
         }
-        allGhostPost(
-            sort: { order: DESC, fields: [published_at] }
-            limit: 50
-            filter: { tags: { elemMatch: { slug: { eq: "hash-tutorial" } } } }
-        ) {
+        allTutorialsYaml(sort: { order: DESC, fields: [published_at] }, limit: 50) {
             edges {
                 node {
-                    ...GhostPostListFields
+                    id
+                    title
+                    slug
+                    tags
+                    excerpt
                 }
             }
         }

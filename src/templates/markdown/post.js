@@ -18,16 +18,8 @@ const getGitHubLink = absoluteFilePath => {
     // the local content files.
     const gitHubRepos = [
         {
-            regex: /^(?:\S*\/content\/api\/v0\.11\/)(\S*)/i,
-            url: `https://github.com/TryGhost/docs-api/blob/v0.11/`,
-        },
-        {
-            regex: /^(?:\S*\/content\/api\/v2\/)(\S*)/i,
-            url: `https://github.com/TryGhost/docs-api/blob/master/`,
-        },
-        {
             regex: /^(?:\S*\/content\/)(\S*)/i,
-            url: `https://github.com/TryGhost/docs/blob/master/content/`,
+            url: `https://github.com/jolylai/docs/blob/master/content/`,
         },
     ];
 

@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Tags } from '@tryghost/helpers-gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Box } from '../common'
-import { Spirit } from '../../styles/spirit-styles'
+import { Box } from '../common';
+import { Spirit } from '../../styles/spirit-styles';
 
 const TutorialCard = ({ post, className, section }) => {
-    const url = `/${section}/${post.slug}/`
-    const excerpt = post.excerpt.length > 200 ? `${post.excerpt.substring(0, 200)}...` : post.excerpt
+    const url = `/${section}/${post.slug}/`;
+    const excerpt =
+        post.excerpt.length > 200 ? `${post.excerpt.substring(0, 200)}...` : post.excerpt;
 
     return (
         <Box
@@ -23,19 +23,21 @@ const TutorialCard = ({ post, className, section }) => {
             </div>
             <footer className="pt2 mt6 flex justify-between items-center">
                 <div className="flex items-center">
-                    {post.featured ? <span className="bg-tutorial-color pa1 f-supersmall fw5 dib measure-0-2 mr2 white br2 pl3 pr3">Featured</span> : null}
-                    <Tags
-                        post={post}
-                        autolink={false}
-                        separator=""
-                        visibility="public"
-                        classes="bg-midgrey dib word-nowrap pt1 pb1 pl2 pr2 white br2 f-supersmall"
-                    />
+                    {post.tags &&
+                        post.tags.map(tag => (
+                            <span
+                                key={tag}
+                                className="bg-midgrey mg2 dib word-nowrap pt1 pb1 pl2 pr2 white br2 f-supersmall"
+                                style={{ marginRight: 2 }}
+                            >
+                                {tag}
+                            </span>
+                        ))}
                 </div>
             </footer>
         </Box>
-    )
-}
+    );
+};
 
 TutorialCard.propTypes = {
     post: PropTypes.shape({
@@ -50,6 +52,6 @@ TutorialCard.propTypes = {
     }).isRequired,
     className: PropTypes.string,
     section: PropTypes.string.isRequired,
-}
+};
 
-export default TutorialCard
+export default TutorialCard;

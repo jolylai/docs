@@ -74,7 +74,13 @@ export const getPostHeaderConfig = ({ pathname }) => {
     if (pathname.match(/^\/reference\//i)) {
         postHeaderConfig.title = `Reference`;
         postHeaderConfig.mainLink = `/reference/introduction/`;
-        postHeaderConfig.bgClass = `bg-concepts`;
+        postHeaderConfig.bgClass = `bg-setup`;
+    }
+
+    if (pathname.match(/^\/tutorials\//i)) {
+        postHeaderConfig.title = `Tutorials`;
+        postHeaderConfig.mainLink = `/tutorials/introduction/`;
+        postHeaderConfig.bgClass = `bg-tutorials`;
     }
 
     return postHeaderConfig;
