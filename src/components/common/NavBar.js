@@ -68,13 +68,13 @@ const NavBar = ({ theme }) => {
                     >
                         Bookmarks
                     </Link>
+                    
                     <Link
                         to="/tutorials/"
                         className={`${themeClasses[theme].menuItem} nowrap f8 pa3 mr1 mr3-l`}
                     >
                         Tutorials
                     </Link>
-
                     <Link
                         to="/faq/"
                         className={`${themeClasses[theme].menuItem} nowrap f8 pa3 mr1 mr3-l`}
