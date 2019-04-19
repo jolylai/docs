@@ -202,7 +202,7 @@ if (runAlgoliaBuild() && hasAlgoliaKey()) {
     plugins.push({
         resolve: `gatsby-plugin-algolia`,
         options: {
-            appId: `6RCFK5TOI5`,
+            appId: `CALYUGORL9`,
             apiKey: `${process.env.ALGOLIA_ADMIN_KEY}`,
             queries: algoliaQueries,
             chunkSize: 10000, // default: 1000

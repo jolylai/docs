@@ -19,6 +19,6 @@ yarn run start
 ```
 
 if have a trouble on sharp when install dependance(windows platform)
-```
+```bash
 npm install -g  windows-build-tools@1.3.2
 ```
