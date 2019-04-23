@@ -10,7 +10,7 @@ The pluggable linting utility for JavaScript and JSX
 ## 什么是 `Prettier`
 
 
-## 配置
+## 配置文件
 ### .prettierrc
 ```js
 {
