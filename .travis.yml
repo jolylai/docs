@@ -5,9 +5,9 @@ branches:
   only:
     - master
 install:
-  - yarn install
+  - npm install
 script:
-  - ALGOLIA_ADMIN_KEY=$ALGOLIA_ADMIN_KEY ALGOLIA=true yarn run build
+  - ALGOLIA_ADMIN_KEY=$ALGOLIA_ADMIN_KEY ALGOLIA=true npm run build
 deploy:
   provider: pages
   skip-cleanup: true
