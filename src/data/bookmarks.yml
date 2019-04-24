@@ -18,3 +18,9 @@
   published_at: '2019-04-16'
   tags:
     - 'JS'
+- title: 'Airbnb JavaScript Style Guide'
+  image: 'https://airbnb.io/favicon.ico'
+  slug: 'https://github.com/airbnb/javascript'
+  published_at: '2019-04-16'
+  tags:
+    - 'JS'

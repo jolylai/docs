@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
-import { Spirit } from "../styles/spirit-styles";
-import { Layout } from "../components/common/layout";
-import { TutorialCard } from "../components/tutorials";
-import { MetaData, getMetaImageUrls } from "../components/common/meta";
+import { Spirit } from '../styles/spirit-styles';
+import { Layout } from '../components/common/layout';
+import { TutorialCard } from '../components/tutorials';
+import { MetaData, getMetaImageUrls } from '../components/common/meta';
 
 const TutorialsPage = ({ data, location }) => {
     // Add meta title and description for this page here to overwrite the site meta data as set in the config
@@ -16,7 +16,7 @@ const TutorialsPage = ({ data, location }) => {
     const posts = data.allGhostPost.edges;
 
     return (
-        <>
+        <React.Fragment>
             <MetaData
                 data={data}
                 location={location}
@@ -44,7 +44,7 @@ const TutorialsPage = ({ data, location }) => {
                     </section>
                 </div>
             </Layout>
-        </>
+        </React.Fragment>
     );
 };
 

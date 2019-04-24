@@ -1,4 +1,5 @@
-- title: Gatsby
-  items:
-    - title: Overview
-      link: /api/gatsby/
+- groups:
+    - group: gatsby-node.js
+      items:
+        - title: createPages
+          link: /reference/gatsby/createPages
