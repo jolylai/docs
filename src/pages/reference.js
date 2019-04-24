@@ -84,6 +84,12 @@ const APIPage = ({ data, location }) => {
                             <APICard to="/reference/graphql/" icon="graphql">
                                 GraphQL
                             </APICard>
+                            <APICard
+                                to="/reference/taro/dva"
+                                img="https://storage.360buyimg.com/taro-static/static/images/logo.png"
+                            >
+                                Taro
+                            </APICard>
                         </div>
                     </div>
 
