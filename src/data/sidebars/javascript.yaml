@@ -3,15 +3,9 @@
       items:
         - title: Overview
           link: /reference/javascript/lodash
-    - group: Content API
+    - group: DOM
       items:
-        - title: Client Library
-          link: /api/javascript/content/
-    - group: Admin API
-      items:
-        - title: Client Library
-          link: /api/javascript/admin/
-    - group: Advanced
-      items:
-        - title: Filtering
-          link: /api/javascript/filtering/
+        - title: window
+          link: /reference/javascript/window
+        - title: document
+          link: /reference/javascript/document

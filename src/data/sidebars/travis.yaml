@@ -1,5 +1,7 @@
 - groups:
     - group: Deployment
       items:
+        - title: Travis CI
+          link: /reference/travis/
         - title: gh-pages
           link: /reference/travis/gh-pages/

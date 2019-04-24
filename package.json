@@ -60,6 +60,7 @@
     "gatsby-plugin-sharp": "2.0.28",
     "gatsby-remark-autolink-headers": "2.0.16",
     "gatsby-remark-code-titles": "1.1.0-rc.0",
+    "gatsby-remark-embed-snippet": "^3.2.4",
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-remark-images": "3.0.9",
     "gatsby-remark-prismjs": "3.2.5",

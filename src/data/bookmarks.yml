@@ -25,10 +25,10 @@
   image: 'http://tabler-react.com/demo/brand/tabler.svg'
   slug: 'https://github.com/tabler/tabler-react'
   tags:
-    - 'UI'
-    - 'Github'
-- title: 'MATERIAL-UI'
-  image: 'https://material-ui.com/static/images/material-ui-logo.svg'
-  slug: 'https://material-ui.com/'
+    - 'JS'
+- title: 'Airbnb JavaScript Style Guide'
+  image: 'https://airbnb.io/favicon.ico'
+  slug: 'https://github.com/airbnb/javascript'
+  published_at: '2019-04-16'
   tags:
-    - 'UI'
+    - 'JS'

@@ -58,10 +58,7 @@ const APIPage = ({ data, location }) => {
                             <APICard href="https://jolylai.github.io/notebook-css/" icon="css">
                                 CSS
                             </APICard>
-                            <APICard
-                                href="https://jolylai.github.io/notebook-js/"
-                                icon="javascript-logo"
-                            >
+                            <APICard to="/reference/javascript/" icon="javascript-logo-inv">
                                 JavaScript
                             </APICard>
                         </div>
@@ -85,7 +82,7 @@ const APIPage = ({ data, location }) => {
                                 React
                             </APICard>
                             <APICard to="/reference/graphql/" icon="graphql">
-                                React
+                                GraphQL
                             </APICard>
                         </div>
                     </div>
