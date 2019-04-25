@@ -7,6 +7,8 @@ keywords:
 sidebar: 'taro'
 ---
 
+多端统一开发框架，支持用 React 的开发方式编写一次代码，生成能运行在微信/百度/字节跳动/支付宝小程序、H5、React Native 等平台的应用。
+
 > [参考项目](https://github.com/jolylai/fate/commit/11b2380313c88e1a3ea5a6dd5e3cedf588c587ad)
 
 ## 安装 dva

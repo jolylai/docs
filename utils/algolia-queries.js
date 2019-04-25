@@ -99,4 +99,4 @@ const mdQueries = markdownQueryConfig.map(({ section, indexName }) => {
 // module.exports = [mdQueries[1]]
 
 // The REAL DEAL
-module.exports = ghostQueries.concat(mdQueries);
+module.exports = mdQueries;
