@@ -32,3 +32,9 @@
   published_at: '2019-04-16'
   tags:
     - 'JS'
+- title: '代码截图工具'
+  image: 'https://carbon.now.sh/static/favicon.ico'
+  slug: 'https://carbon.now.sh'
+  published_at: '2019-04-25'
+  tags:
+    - 'Tool'

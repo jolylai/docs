@@ -58,8 +58,11 @@ const APIPage = ({ data, location }) => {
                             <APICard href="https://jolylai.github.io/notebook-css/" icon="css">
                                 CSS
                             </APICard>
-                            <APICard to="/reference/javascript/" icon="javascript-logo-inv">
+                            <APICard to="/reference/javascript/" icon="javascript-logo">
                                 JavaScript
+                            </APICard>
+                            <APICard to="/reference/js-style/array" icon="javascript-logo-inv">
+                                JS Style
                             </APICard>
                         </div>
                     </div>
