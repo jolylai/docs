@@ -5,7 +5,7 @@ exports.createPages = ({ graphql, actions }) =>
     // eslint-disable-next-line
     Promise.all([
         createPages.createRedirects({ actions }),
-        createPages.createGhostPages({ graphql, actions }),
+        // createPages.createGhostPages({ graphql, actions }),
         createPages.createMarkdownPages({ graphql, actions }),
     ]);
 
