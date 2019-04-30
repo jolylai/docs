@@ -9,3 +9,7 @@
           link: /reference/javascript/window
         - title: document
           link: /reference/javascript/document
+    - group: You Dont Know JS
+      items:
+        - title: Types
+          link: /reference/javascript/types

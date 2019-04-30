@@ -70,6 +70,7 @@ const good = {
 ## 不要直接调用对象原型链上的方法
 
 这些方法可能被对象的属性掩盖，思考 { hasOwnProperty: false } ，或者对象可能是 null (Object.create(null)).
+Object.create(null) 创建的对象没有 `__proto__`
 
 ```js
 // bad
