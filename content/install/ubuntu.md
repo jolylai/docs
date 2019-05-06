@@ -1,8 +1,8 @@
 ---
-title: "Ubuntu"
-date: "2018-10-01"
-meta_title: "How to install & setup Ghost on Ubuntu 16.04 + 18.04"
-meta_description: "A full production install guide for how to install the Ghost professional publishing platform on a production server running Ubuntu 16.04 or 18.04."
+title: 'Ubuntu'
+date: '2018-10-01'
+meta_title: 'How to install & setup Ghost on Ubuntu 16.04 + 18.04'
+meta_description: 'A full production install guide for how to install the Ghost professional publishing platform on a production server running Ubuntu 16.04 or 18.04.'
 keywords:
     - setup
     - production
@@ -127,7 +127,7 @@ sudo apt-get install -y nodejs
 
 ---
 
-## Install MongoDB
+### Install MongoDB
 
 ```bash
 # 切换到下载目录

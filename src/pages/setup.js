@@ -54,7 +54,7 @@ const SetupPage = ({ data, location }) => {
                         </SetupBox>
 
                         <SetupBox
-                            href="https://hub.docker.com/_/ghost/"
+                            to="/install/docker/"
                             title="Docker"
                             icon="docker-logo"
                             iconClass="w10 h10"
