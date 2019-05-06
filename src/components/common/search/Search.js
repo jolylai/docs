@@ -119,7 +119,7 @@ class Results extends React.Component {
         };
 
         return (
-            <>
+            <React.Fragment>
                 <Configure hitsPerPage="5" />
                 <Autosuggest
                     suggestions={hits}
@@ -134,12 +134,10 @@ class Results extends React.Component {
                     getSectionSuggestions={this.getSectionSuggestions}
                 />
                 <Index indexName="concept" />
-                <Index indexName="setup" />
+                <Index indexName="install" />
                 <Index indexName="tutorial" />
-                <Index indexName="integration" />
-                <Index indexName="api" />
-                <Index indexName="faq" />
-            </>
+                <Index indexName="reference" />
+            </React.Fragment>
         );
     }
 }

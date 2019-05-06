@@ -36,11 +36,16 @@ const markdownQueryConfig = [
         indexName: `setup`,
         niceName: `Setup Guide`,
     },
-    // {
-    //     section: `api`,
-    //     indexName: `api`,
-    //     niceName: `API Reference`,
-    // },
+    {
+        section: `tutorials`,
+        indexName: `tutorials`,
+        niceName: `Tutorials`,
+    },
+    {
+        section: `reference`,
+        indexName: `reference`,
+        niceName: `Reference`,
+    },
 ];
 
 module.exports = {

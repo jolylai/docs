@@ -1,43 +1,47 @@
-import React from 'react'
-import Modal from 'react-modal'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
-import Search from './Search'
-import SearchInput from './SearchInput'
-import Icon from '../Icon'
+import Search from './Search';
+import SearchInput from './SearchInput';
+import Icon from '../Icon';
 
 class SearchModal extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             modalIsOpen: false,
-        }
+        };
 
-        this.openModal = this.openModal.bind(this)
-        this.closeModal = this.closeModal.bind(this)
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     openModal() {
         this.setState(() => {
-            return { modalIsOpen: true }
-        })
+            return { modalIsOpen: true };
+        });
     }
 
     closeModal() {
         this.setState(() => {
-            return { modalIsOpen: false }
-        })
+            return { modalIsOpen: false };
+        });
     }
 
     componentDidMount() {
-        Modal.setAppElement(`#___gatsby`)
+        Modal.setAppElement(`#___gatsby`);
     }
 
     render() {
         return (
-            <>
-                <SearchInput theme={this.props.theme} isHome={this.props.isHome} onClick={this.openModal} />
+            <React.Fragment>
+                <SearchInput
+                    theme={this.props.theme}
+                    isHome={this.props.isHome}
+                    onClick={this.openModal}
+                />
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -50,21 +54,32 @@ class SearchModal extends React.Component {
                     overlayClassName="search-modal-overlay fixed absolute--fill flex flex-column items-center z-999"
                     bodyOpenClassName="body-modal-open z-9999"
                 >
-                    <div className="absolute pa4 top-0 right-0 pointer" onClick={this.closeModal} data-cy="close-modal"><Icon name="close" className="fill-midgrey w3 h-auto" /></div>
+                    <div
+                        className="absolute pa4 top-0 right-0 pointer"
+                        onClick={this.closeModal}
+                        data-cy="close-modal"
+                    >
+                        <Icon name="close" className="fill-midgrey w3 h-auto" />
+                    </div>
                     <div className="relative">
-                        <Icon name="search" className="fill-midgrey-l1 w4 h-auto absolute search-modal-input-field left-3" />
-                        <label htmlFor="globalsearch" className="clip">Search</label>
+                        <Icon
+                            name="search"
+                            className="fill-midgrey-l1 w4 h-auto absolute search-modal-input-field left-3"
+                        />
+                        <label htmlFor="globalsearch" className="clip">
+                            Search
+                        </label>
                         <Search />
                     </div>
                 </Modal>
-            </>
-        )
+            </React.Fragment>
+        );
     }
 }
 
 SearchModal.defaultProps = {
     isHome: false,
-}
+};
 
 SearchModal.propTypes = {
     theme: PropTypes.shape({
@@ -72,6 +87,6 @@ SearchModal.propTypes = {
         searchBox: PropTypes.string,
     }),
     isHome: PropTypes.bool,
-}
+};
 
-export default SearchModal
+export default SearchModal;
