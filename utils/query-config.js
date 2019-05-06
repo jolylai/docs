@@ -38,7 +38,7 @@ const markdownQueryConfig = [
     },
     {
         section: `tutorials`,
-        indexName: `tutorials`,
+        indexName: `tutorial`,
         niceName: `Tutorials`,
     },
     {
