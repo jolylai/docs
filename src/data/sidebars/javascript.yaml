@@ -1,8 +1,4 @@
 - groups:
-    - group: Lodash
-      items:
-        - title: Overview
-          link: /reference/javascript/lodash
     - group: DOM
       items:
         - title: window

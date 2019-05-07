@@ -64,6 +64,9 @@ const APIPage = ({ data, location }) => {
                             <APICard to="/reference/js-style/array" icon="javascript-logo-inv">
                                 JS Style
                             </APICard>
+                            <APICard to="/reference/lodash/flatten" icon="lodash">
+                                Lodash
+                            </APICard>
                         </div>
                     </div>
 
