@@ -38,3 +38,15 @@
   published_at: '2019-04-25'
   tags:
     - 'Tool'
+- title: 'Palette'
+  image: 'https://flatuicolors.com/static/favicon.ico'
+  slug: 'https://flatuicolors.com/'
+  published_at: '2019-05-08'
+  tags:
+    - 'UI'
+- title: 'collectui'
+  image: 'https://collectui.com/img/favicon.ico'
+  slug: 'https://collectui.com/designs'
+  published_at: '2019-05-08'
+  tags:
+    - 'UI'

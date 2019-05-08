@@ -3,5 +3,7 @@
       items:
         - title: chunk
           link: /reference/lodash/chunk
+        - title: compact
+          link: /reference/lodash/compact
         - title: flatten
           link: /reference/lodash/flatten

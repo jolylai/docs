@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
-import { Spirit } from "../styles/spirit-styles";
-import { Layout } from "../components/common/layout";
-import { SetupBox } from "../components/setup";
-import { MetaData, getMetaImageUrls } from "../components/common/meta";
+import { Spirit } from '../styles/spirit-styles';
+import { Layout } from '../components/common/layout';
+import { SetupBox } from '../components/setup';
+import { MetaData, getMetaImageUrls } from '../components/common/meta';
 
 const SetupPage = ({ data, location }) => {
     // Add meta title and description for this page here to overwrite the site meta data as set in the config
@@ -87,8 +87,26 @@ const SetupPage = ({ data, location }) => {
                             headingClass="mt2"
                         >
                             <p className={`${Spirit.small} mw70`}>
-                                <strong>Git</strong> 是目前最流行的版本管理系统
+                                <strong>Git</strong> fast, scalable, distributed revision control system
                             </p>
+                        </SetupBox>
+                        <SetupBox
+                            to="/install/tools/"
+                            title="Tools"
+                            icon="tools"
+                            iconClass="fill-darkgrey w8 h8"
+                            headingClass="mt2"
+                        >
+                            <p className={`${Spirit.small} mw70`}>What I installed</p>
+                        </SetupBox>
+                        <SetupBox
+                            to="/install/libs/"
+                            title="Awsome Libs"
+                            icon="library"
+                            iconClass="fill-darkgrey w8 h8"
+                            headingClass="mt2"
+                        >
+                            <p className={`${Spirit.small} mw70`}>Frontend develop libs</p>
                         </SetupBox>
                     </section>
                 </div>
