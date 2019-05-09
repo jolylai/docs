@@ -109,8 +109,8 @@ const APIPage = ({ data, location }) => {
                             </p>
                         </div>
                         <div className={sectionStyles.cardContainer}>
-                            <APICard to="/reference/prettier/" icon="mongo">
-                                Mongoo
+                            <APICard to="/reference/mongodb/" icon="mongo">
+                                MongoDB
                             </APICard>
                         </div>
                     </div>

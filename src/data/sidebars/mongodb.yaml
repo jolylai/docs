@@ -1,0 +1,7 @@
+- groups:
+    - group: Mongoose
+      items:
+        - title: Schema
+          link: /reference/mongodb/schema
+        - title: Model
+          link: /reference/mongodb/model
