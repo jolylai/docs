@@ -1,5 +1,5 @@
 - groups:
-    - group: gatsby-node.js
+    - group: Gatsby
       items:
-        - title: createPages
-          link: /reference/gatsby/createPages
+        - title: MDX
+          link: /reference/gatsby/mdx

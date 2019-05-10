@@ -81,7 +81,7 @@ const APIPage = ({ data, location }) => {
                             </p>
                         </div>
                         <div className={sectionStyles.cardContainer}>
-                            <APICard to="/reference/gatsby/" icon="gatsby-logo">
+                            <APICard to="/reference/gatsby/mdx" icon="gatsby-logo">
                                 Gatsby
                             </APICard>
                             <APICard to="/reference/react/" icon="react-logo">
