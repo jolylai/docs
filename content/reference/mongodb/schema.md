@@ -28,6 +28,17 @@ const UserSchema = new mongoose.Schema({
     trim: true            第七种：设置保存时，去掉前后空白字符
   },
 
+  // getter setter
+  str: {
+    type: String,
+    get(v){
+      return v+123
+    },
+    set(v){
+      return 123+v
+    }
+  }
+
   // Number
   num: {
     type: Number,
@@ -59,19 +70,17 @@ const mongoose = require('mongoose');
  * 第一种写法 validate: { validator: Function }
  * PS：只可以加入一个验证器
  */
-const User = mongoose.model(
-    'User',
-    new mongoose.Schema({
-        name: {
-            type: String,
-            validate: {
-                validator(value) {
-                    return value.length <= 9;
-                },
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        validate: {
+            validator(value) {
+                return value.length <= 9;
             },
         },
-    })
-);
+    },
+});
+const User = mongoose.model('User', UserSchema);
 
 /**
  * 第二种写法 Class.schema.path(xxx).validate(fn)
@@ -86,4 +95,58 @@ const User = mongoose.model(
 User.schema.path('name').validate(function(v) {
     return v.length <= 9;
 });
+```
+
+## Methods
+
+```js
+const mongoose = require('mongoose');
+const userSchema = new mongoose.Schema({
+    //定义类似于JavaScript原型的结构
+    firstName: String,
+    secondName: String,
+});
+/**
+ * 加入实例方法
+ * schema.methods.xxx
+ */
+userSchema.methods.getAllName = function() {
+    //this等于对象本身，即原型！可以调用任意的api，无限制，只要表现在于定义的形式
+    return this.firstName + '.' + this.secondName;
+};
+/**
+ * 加入静态方法
+ * schema.statics.xxx
+ */
+schema.statics.getAll = function(cb) {
+    //this这个时候等于集合，即集合底层的users，因此可以对数据库进行操纵
+    return this.find({}, cb); //也可以加入回调函数
+};
+/**
+ * 加入虚拟setter/getter方法
+ * virtual("xxx").get(handle)
+ * virtual("xxx").set(handle(value))
+ */
+userSchema.virtual('allname').get(function() {
+    return this.firstName + '.' + this.secondName;
+});
+userSchema.virtual('allname').set(function(v) {
+    this.firstName = v.firstName;
+    this.secondName = v.secondName;
+});
+const User = mongoose.model('User', userSchema); //创建实际的类
+
+//测试调用
+const u = new User({
+    firstName: 'hong',
+    secondName: 'meiting',
+});
+console.log(u.getAllName()); //打印hong.meiting，此为对象实例方法的调用
+User.getAll().then(result => {
+    console.log('调用静态方法成功，查询到数据库了');
+});
+const u2 = new User({
+    allname: { firstName: 'hong', secondName: 'meting' },
+});
+console.log(u2); //打印出 firstName: "hong",secondName: "meting"，已经在虚拟方法中被赋值了
 ```

@@ -50,3 +50,9 @@
   published_at: '2019-05-08'
   tags:
     - 'UI'
+- title: 'CSS Battle'
+  image: 'https://cssbattle.dev/images/logo.svg'
+  slug: 'https://cssbattle.dev'
+  published_at: '2019-05-09'
+  tags:
+    - 'CSS'
