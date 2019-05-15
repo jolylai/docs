@@ -1,10 +1,12 @@
 - groups:
-    - group: DOM
+    - group: Base
       items:
         - title: window
           link: /reference/javascript/window
         - title: document
           link: /reference/javascript/document
+        - title: RegExp
+          link: /reference/javascript/regexp
     - group: You Dont Know JS
       items:
         - title: Types

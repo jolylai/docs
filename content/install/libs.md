@@ -7,6 +7,7 @@ keywords:
 ## Nodejs
 - [bcrypt](https://github.com/kelektiv/node.bcrypt.js) - A library to help you hash passwords.
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)An implementation of JSON Web Tokens.
+- [pm2](https://github.com/Unitech/pm2)Node.js Production Process Manager with a built-in Load Balancer. 
 
 ## 打包工具
 
