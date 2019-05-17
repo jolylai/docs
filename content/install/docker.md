@@ -4,7 +4,38 @@ keywords:
     - Docker
 ---
 
-## How to use docker?
+## Install
+
+### Linus
+
+```bash
+# sudo 普通用户希望用root权限执行
+# wget 下载命令
+# -qO(字母) 限制输出跟普通输出
+# | sh 用SH的方式执行
+
+sudo wget -qO- https://get.docker.com | sh
+
+# 这个命令的意思是把当前用户加入docker用户组。
+sudo usermod -aG docker 用户名
+
+# 安装 docker-compose
+curl https://github.com/docker/compose
+```
+
+### CentOS
+
+```shell
+# CentOS7 系统 CentOS-Extras 库中已带 Docker，可以直接安装：
+$ sudo yum install docker
+
+# 安装之后启动 Docker 服务，并让它随系统启动自动加载。
+$ sudo service docker start
+
+$ sudo chkconfig docker on
+```
+
+## Use Docker
 
 For that we need to familiarise ourselves with certain terminology.
 
@@ -13,6 +44,41 @@ For that we need to familiarise ourselves with certain terminology.
 **Docker image**: It is an executable file which contains cutdown operating system and all the libraries and configuration needed to run the application. It has multiple layers stacked on top of each other and represented as single object. A docker image is created using docker file, we will get to that in a bit.
 
 **Docker Container**: It is a running instance of docker image. there can be many containers running from same docker image.
+
+### Dockerfile
+
+Environment variables are supported by the following list of instructions in the [Dockerfile](https://docs.docker.com/engine/reference/builder/):
+
+-   ADD
+-   COPY
+-   ENV
+-   EXPOSE
+-   FROM
+-   LABEL
+-   STOPSIGNAL
+-   USER
+-   VOLUME
+-   WORKDIR
+
+For example
+
+```Dockerfile
+# pulls node.js docker image from docker hub
+FROM node:8
+
+# The ARG instruction defines a variable
+# that users can pass at build-time to the builder with the
+# `docker build` command using the --build-arg <varname>=<value> flag.
+# docker build --build-arg ENV_TAG=prod .
+ARG ENV_TAG
+ENV ENV_TAG ${ENV_TAG}
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+COPY . /app
+EXPOSE 8081
+CMD node index.js
+```
 
 ## Containerise
 
@@ -29,31 +95,30 @@ cd my-node-app
 
 let ‘s create a simple node server in index.js and add following code there:
 
-```bash
+```js
 //Load express module with `require` directive
 
-var express = require('express')
+var express = require('express');
 
-var app = express()
+var app = express();
 
 //Define request response in root URL (/)
-app.get('/', function (req, res) {
- res.send('Hello World!')
-})
+app.get('/', function(req, res) {
+    res.send('Hello World!');
+});
 
 //Launch listening server on port 8081
-app.listen(8081, function () {
-  console.log('app listening on port 8081!')
-})
+app.listen(8081, function() {
+    console.log('app listening on port 8081!');
+});
 ```
 
 and save this file inside your my-node-app folder.
 
 Now we create a `package.json` file and add following code there:
 
-```js
- {
-
+```json
+{
     "name": "helloworld",
     "version": "1.0.0",
     "description": "Dockerized node.js app",
@@ -61,10 +126,9 @@ Now we create a `package.json` file and add following code there:
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "express": "^4.16.4"
+        "express": "^4.16.4"
     }
-
- }
+}
 ```
 
 At this point you don’t need express or npm installed in your host, because remember dockerfile handles setting up all the dependencies, lib and configurations.
@@ -73,7 +137,7 @@ At this point you don’t need express or npm installed in your host, because re
 
 Let’s create dockerfile and save it inside our `my-node-app` folder. This file has no extension and is named `Dockerfile` . Let go ahead and add following code to our dockerfile.
 
-```
+```Dockerfile
 # Dockerfile
 FROM node:8
 WORKDIR /app
@@ -95,7 +159,7 @@ CMD node index.js
 
 Show time. Open terminal , go to your folder my-node-app and type following command:
 
-```bash
+```shell
 # Build a image docker build -t <image-name> <relative-path-to-your-dockerfile>
 
 docker build -t hello-world .

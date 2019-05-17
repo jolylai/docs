@@ -52,7 +52,7 @@ const HomePage = ({ data, location }) => {
                                 <HomeAPIBox to="/api/#rest-api" title="Rest API" icon="rest-api">
                                     A full reference of API Endpoints
                                 </HomeAPIBox>
-                                <HomeAPIBox to="/api/#tools" title="Tools" icon="tools">
+                                <HomeAPIBox to="/api/#tools" title="Tools" icon="rest-api">
                                     Utilities to help build and manage Ghost
                                 </HomeAPIBox>
                             </Box>
