@@ -56,9 +56,9 @@ export const pageQuery = graphql`
                 node {
                     id
                     title
-                    image
                     slug
                     tags
+                    favicon
                 }
             }
         }
