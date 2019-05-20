@@ -38,6 +38,20 @@
       "id": "2",
       "references": [],
       "title": "MongoDB"
+    },
+    {
+      "assignedTo": {
+        "name": "'suxun'"
+      },
+      "category": "feature-coercion",
+      "creation_time": "2019-05-20T07:12:36.244Z",
+      "details": {
+        "content": "类型转换",
+        "mime": "text/markdown"
+      },
+      "id": "3",
+      "references": [],
+      "title": "Coercion"
     }
   ]
 }

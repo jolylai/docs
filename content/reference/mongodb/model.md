@@ -28,7 +28,7 @@ const User = mongoose.model('User', UserSchema);
 
 ## Create
 
-### model.save()
+### Model.prototype.save()
 
 ```js
 /**
@@ -39,7 +39,7 @@ const user = new User({ name: 'Tom' });
 user.save();
 ```
 
-### model.create()
+### Model.create()
 
 ```js
 /**
@@ -75,11 +75,11 @@ User.create([
     });
 ```
 
-### model.insertMany
+### Model.insertMany()
 
 ```js
 /**
- * 增加第三种：User.insertMany
+ * 增加第三种：Model.insertMany()
  * 可以创建多条数据，只有一种写法，由于是通过一条请求跟数据库交互的底层操作
  * 所以只要过程中有一条数据插入错误，那么所有数据都保存不成功，但是性能比create快
  */
@@ -142,49 +142,28 @@ User.find({ 'content.label': value }, function(err, comment) {
 ### Query Condition
 
 ```js
-    $or　　　　或关系
-
-　　$nor　　　 或关系取反
-
-　　$gt　　　　大于
-
-　　$gte　　　 大于等于
-
-　　$lt　　　　 小于
-
-　　$lte　　　  小于等于
-
-　　$ne            不等于
-
-　　$in             在多个值范围内
-
-　　$nin           不在多个值范围内
-
-　　$all            匹配数组中多个值
-
-　　$regex　　正则，用于模糊查询
-
-　　$size　　　匹配数组大小
-
-　　$maxDistance　　范围查询，距离（基于LBS）
-
-　　$mod　　   取模运算
-
-　　$near　　　邻域查询，查询附近的位置（基于LBS）
-
-　　$exists　　  字段是否存在
-
-　　$elemMatch　　匹配内数组内的元素
-
-　　$within　　范围查询（基于LBS）
-
-　　$box　　　 范围查询，矩形范围（基于LBS）
-
-　　$center       范围醒询，圆形范围（基于LBS）
-
-　　$centerSphere　　范围查询，球形范围（基于LBS）
-
-　　$slice　　　　查询字段集合中的元素（比如从第几个之后，第N到第M个元素）
+$or               或关系
+$nor              或关系取反
+$gt               大于
+$gte              大于等于
+$lt               小于
+$lte              小于等于
+$ne               不等于
+$in               在多个值范围内
+$nin              不在多个值范围内
+$all              匹配数组中多个值
+$regex            正则，用于模糊查询
+$size             匹配数组大小
+$maxDistance      范围查询，距离（基于LBS）
+$mod              取模运算
+$near             邻域查询，查询附近的位置（基于LBS）
+$exists           字段是否存在
+$elemMatch        匹配内数组内的元素
+$within       　　范围查询（基于LBS）
+$box              范围查询，矩形范围（基于LBS）
+$center           范围醒询，圆形范围（基于LBS）
+$centerSphere     范围查询，球形范围（基于LBS）
+$slice            查询字段集合中的元素（比如从第几个之后，第N到第M个元素）
 ```
 
 ### Compare Query
@@ -195,7 +174,11 @@ User.find({ 'content.label': value }, function(err, comment) {
  * $lt 小于   $lte 小于等于
  * $eq 等于   $ne  不等于
  */
-User.find({ num: { $lt: 20, $gt: 10 } }, function(err, result) {
+
+const conditions = {
+    age: { $gt: 10, $lt: 20 },
+};
+User.find(conditions, function(err, result) {
     console.log(result + '返回大于10，小于20的区间数据');
 });
 
