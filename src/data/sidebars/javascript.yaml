@@ -11,3 +11,5 @@
       items:
         - title: Types
           link: /reference/javascript/types
+        - title: Coercion
+          link: /reference/javascript/coercion
