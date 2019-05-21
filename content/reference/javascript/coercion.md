@@ -9,7 +9,8 @@ keywords:
 sidebar: 'javascript'
 ---
 
-As compared to other type-enforced languages, JavaScript arrays are just containers for any type of value, from string to number to object to even another array (which is how you get multidimensional arrays).
+将值从一种类型转换为另一种类型通常称为类型转换（type casting），这是显式的情况；隐
+式的情况称为强制类型转换（coercion）。
 
 ## ToString
 
@@ -58,6 +59,17 @@ a.toString(8); // "12"
 a.toString(10); // "10"
 a.toString(16); // "a"
 
+// 会按照指定的小数位返回数值的字符串
+a.toFixed(2); // "10.00"
+
+// 返回以指数表示法（也称 e 表示法）
+// 表示的数值的字符串形式
+a.toExponential(1); // "1.0e+1"
+
+// toPrecision()会根据要处理的数值决定到底是调用 toFixed()还是调用 toExponential()。
+a.toPrecision(1); // "1e+1"
+a.toPrecision(2); // "10"
+
 // multiplying `1.07` by `1000`, seven times over
 const number = 1.07 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000 * 1000;
 
@@ -76,6 +88,7 @@ let obj = {
 obj.toString(); //  "[object Object]"
 obj = {
     age: 18,
+    // 自定义 toString 方法
     toString: function() {
         return this.age;
     },
@@ -121,8 +134,7 @@ JSON.stringify(true); // "true"
 -   undefined
 -   function
 -   symbol（ES6+）
--   包含循环引用（对象之间相互引用，形成一个无限循环）的对象
--   对包含循环引用的对象执行 JSON.stringify(..) 会出错。
+-   包含循环引用（对象之间相互引用，形成一个无限循环）的对象。(对包含循环引用的对象执行 JSON.stringify(..) 会出错。)
 
 JSON.stringify(..) 在对象中遇到 `undefined`、`function` 和 `symbol` 时会自动将其忽略，在
 数组中则会返回 `null`（以保证单元位置不变）。
@@ -137,3 +149,125 @@ JSON.stringify([1, undefined, function() {}, 4]); // "[1,null,null,4]"
 // 自动将其忽略
 JSON.stringify({ a: 2, b: function() {} }); // "{"a":2}"
 ```
+
+## ToNumber
+
+`true` 转换为 `1`，`false` 转换为 `0`。`undefined` 转换为 `NaN`，`null` 转换为 `0`。
+
+### String
+
+ToNumber 对字符串的处理基本遵循数字常量的相关规则 / 语法。处理失败
+时返回 `NaN`（处理数字常量失败时会产生语法错误）。不同之处是 ToNumber 对以 0 开头的
+十六进制数并不按十六进制处理（而是按十进制）。
+
+```js
+const a = '3.14';
+const b = +a;
+b; // 3.14
+```
+
+**式解析数字字符串**：解析允许字符串中含有非数字字符，解析按从左到右的顺序，如果遇到非数字字符就停
+止。而转换不允许出现非数字字符，否则会失败并返回 NaN。
+
+```js
+var a = '42';
+var b = '42px';
+
+Number(a); // 42
+parseInt(a, 10); // 42
+
+Number(b); // NaN
+parseInt(b, 10); // 42
+
+parseInt(true); // NaN
+```
+
+**Note:parseInt**
+
+-   parseInt(..) 针对的是字符串值。向 parseInt(..) 传递数字和其他类型的参数是没有用的，比如 true、function(){...} 和 [1,2,3]。
+-   非字符串参数会首先被强制类型转换为字符串，依赖这样的隐式强制类型转换并非上策，应该避免向 parseInt(..) 传递非字符串参数。
+-   如果你的代码需要在 ES5 之前的环境运行，请记得将第二个参数设置为 10。
+
+```js
+var a = {
+    num: 21,
+    toString: function() {
+        return String(this.num * 2);
+    },
+};
+parseInt(a); // 42
+
+parseInt(1 / 0, 19); // 18
+```
+
+a 非字符串，所以 parseInt 会调用 toString 方法强制转换为字符串得到 '42'
+
+### Object
+
+对象（包括数组）会首先被转换为相应的基本类型值，如果返回的是非数字的基本类型
+值，则再遵循以上规则将其强制转换为数字。
+
+为了将值转换为相应的基本类型值，抽象操作 ToPrimitive（参见 ES5 规范 9.1 节）会首先
+（通过内部操作 DefaultValue，参见 ES5 规范 8.12.8 节）检查该值是否有 valueOf() 方法。
+如果有并且返回**基本类型值**，就使用该值进行强制类型转换。如果没有就使用 toString()
+的返回值（如果存在）来进行强制类型转换。即 `Object.valueOf -> Object.toString -> Object.prototype.toString()`的顺序。
+
+如果 valueOf() 和 toString() 均不返回基本类型值，会产生 TypeError 错误。
+
+从 ES5 开始，使用 Object.create(null) 创建的对象 [[Prototype]] 属性为 null，并且没
+有 valueOf() 和 toString() 方法，因此无法进行强制类型转换。
+
+```js
+var a = {
+    valueOf: function() {
+        return '42';
+    },
+};
+var b = {
+    toString: function() {
+        return '42';
+    },
+};
+var d = {
+    // 有valueOf方法先采用
+    valueOf: function() {
+        return '12';
+    },
+
+    toString: function() {
+        return '42';
+    },
+};
+var c = [4, 2];
+c.toString = function() {
+    return this.join(''); // "42"
+};
+Number(a); // 42
+Number(b); // 42
+Number(d); // 12
+Number(c); // 42
+Number(''); // 0
+Number([]); // 0
+Number(['abc']); // NaN
+```
+
+### Date
+
+获取当前时间戳
+
+```js
+const timestamp = new Date().getTime();
+const timestamp = +new Date();
+// 静态方法 不用new
+const timestamp = Date.now();
+```
+
+## ToBoolean
+
+### falsy value
+
+-   undefined
+-   null
+-   ''
+-   false
+-   +0, -0 ,NaN
