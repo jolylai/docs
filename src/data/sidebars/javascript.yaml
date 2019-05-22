@@ -11,5 +11,9 @@
       items:
         - title: Types
           link: /reference/javascript/types
-        - title: Coercion
-          link: /reference/javascript/coercion
+    - group: Coercion
+      items:
+        - title: Abstract Operations
+          link: /reference/javascript/abstract-operations
+        - title: Loose Equals vs. Strict Equals
+          link: /reference/javascript/equals
