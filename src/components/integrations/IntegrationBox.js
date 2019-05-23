@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from '../common';
+import { Box, Icon } from '../common';
+import { urlRegex } from '../../../utils/urls';
 
 const IntegrationBox = ({ post, hit }) => {
     const url = post ? post.slug : hit.url;
     const title = post ? post.title : hit.title;
-    const image = post ? post.image : hit.image;
-    // const optimisedImg = `https://res.cloudinary.com/tryghost/image/fetch/w_120,h_100,c_fit/${image}`;
+    const favicon = post ? post.favicon : hit.favicon;
 
     return (
         <Box
@@ -17,12 +17,16 @@ const IntegrationBox = ({ post, hit }) => {
             radius="4"
         >
             <div className="flex justify-center items-center h10 w13 mt1">
-                <img
-                    className="w-100 h-100"
-                    style={{ objectFit: `contain` }}
-                    src={image}
-                    alt={title}
-                />
+                {urlRegex.test(favicon) ? (
+                    <img
+                        className="w-100 h-100"
+                        style={{ objectFit: `contain` }}
+                        src={favicon}
+                        alt={title}
+                    />
+                ) : (
+                    <Icon name={favicon} className="w-100 h-100" style={{ objectFit: `contain` }} />
+                )}
             </div>
             <div className="f8 mt3">{title}</div>
         </Box>

@@ -11,3 +11,11 @@
       items:
         - title: Types
           link: /reference/javascript/types
+    - group: Coercion
+      items:
+        - title: Abstract Operations
+          link: /reference/javascript/operations-abstract
+        - title: Loose Equals vs. Strict Equals
+          link: /reference/javascript/operations-equals
+        - title: 关系比较
+          link: /reference/javascript/operations-relational

@@ -1,4 +1,4 @@
-@import "colors.css";
+@import 'colors.css';
 
 :root {
     --navbar-size: 88px;
@@ -43,9 +43,7 @@
 .post-content > p:first-child {
     margin: calc(var(--vr-2) - 1px) 0 0;
     font-size: 1.75rem;
-    line-height: calc(
-        var(--vr-4) - 0.4rem
-    ); /* Fine tune line height for this font size */
+    line-height: calc(var(--vr-4) - 0.4rem); /* Fine tune line height for this font size */
 }
 
 .post-content ol,
@@ -110,7 +108,7 @@
     color: inherit;
     font-size: inherit;
     line-height: inherit;
-    font-style: italic;
+    white-space: pre-line;
 }
 
 .post-content blockquote small {
@@ -120,7 +118,7 @@
 }
 /* Quotation marks */
 .post-content blockquote small:before {
-    content: "\2014 \00A0";
+    content: '\2014 \00A0';
 }
 
 .post-content blockquote cite {
@@ -202,7 +200,7 @@ Super neat trick courtesy of @JoelDrapper
 Usage (In Ghost edtior):
 ![img](/some/image.jpg#full)
 */
-.post-content img[src$="#full"] {
+.post-content img[src$='#full'] {
     max-width: none;
     width: 100vw;
 }
@@ -676,7 +674,6 @@ Usage (In Ghost editor):
     padding: 0;
 }
 
-
 /* 7.6. Koenig Styles
 /* ---------------------------------------------------------- */
 
@@ -917,7 +914,7 @@ Usage (In Ghost editor):
 }
 
 .tutorial-content h2:last-of-type:after {
-    content: "";
+    content: '';
     background: none;
     top: 30px;
     width: 100%;
@@ -1002,7 +999,7 @@ pre {
 }
 
 .zapier + .zapier:before {
-    content: "";
+    content: '';
     height: 30px;
     width: 100%;
     background: #fff;
@@ -1011,7 +1008,7 @@ pre {
 }
 
 .zapier + .zapier:after {
-    content: "";
+    content: '';
     height: 29px;
     width: 1px;
     margin: 0 auto;

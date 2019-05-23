@@ -10,53 +10,63 @@ sidebar: 'mongodb'
 
 Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
 
+## SchemaTypes
+
+All Schema Types
+
+-   **required**: boolean or function, if true adds a required validator for this property
+-   **default**: Any or function, sets a default value for the path. If the value is a function, the return value of the function is used as the default.
+-   **select**: boolean, specifies default projections for queries
+-   **validate**: function, adds a validator function for this property
+-   **get**: function, defines a custom getter for this property using Object.defineProperty().
+-   **set**: function, defines a custom setter for this property using Object.defineProperty().
+-   **alias**: string, mongoose >= 4.10.0 only. Defines a virtual with the given name that gets/sets this path.
+
 ## Defining a Schema
 
 ```js
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-  // String
-  str: {
-    type: String,
-    enum: ["aaa", "bbb"]  第一种：验证枚举
-    match: /^\d*$/        第二种：验证正则表达式(纯数字正则)
-    maxlength: 12         第三种：验证限制字符串最大长度
-    minlength: 5          第四种：验证限制字符串最小程度
-    lowercase: true       第五种：设置保存时，将所有英文全部转化为小写
-    uppercase: true       第六种：设置保存时，将所有英文全部转化为大写
-    trim: true            第七种：设置保存时，去掉前后空白字符
-  },
-
-  // getter setter
-  str: {
-    type: String,
-    get(v){
-      return v+123
+    // String
+    str: {
+        type: String,
+        enum: ["aaa", "bbb"]  第一种：验证枚举
+        match: /^\d*$/        第二种：验证正则表达式(纯数字正则)
+        maxlength: 12         第三种：验证限制字符串最大长度
+        minlength: 5          第四种：验证限制字符串最小程度
+        lowercase: true       第五种：设置保存时，将所有英文全部转化为小写
+        uppercase: true       第六种：设置保存时，将所有英文全部转化为大写
+        trim: true            第七种：设置保存时，去掉前后空白字符
     },
-    set(v){
-      return 123+v
+
+    // Number
+    num: {
+        type: Number,
+        min: 6                第一种：验证最小值
+        max: 20               第二种：验证最大值
+    },
+
+    // Date
+    date: {
+        type: Date,
+        min: new Date(baseDateNum - 1000)   第一种：验证最小值
+        max: new Date(baseDateNum + 2000)   第二种：验证最大值
+    },
+
+    // ObjectId
+    driver: {
+        type: mongoose.Schema.Types.ObjectId,
     }
-  }
 
-  // Number
-  num: {
-    type: Number,
-    min: 6                第一种：验证最小值
-    max: 20               第二种：验证最大值
-  },
-
-  // Date
-  date: {
-    type: Date,
-    min: new Date(baseDateNum - 1000)   第一种：验证最小值
-    max: new Date(baseDateNum + 2000)   第二种：验证最大值
-  }
+    // Mixed
+    any: {
+        type: mongoose.Schema.Types.Mixed
+    }
 });
-
 ```
 
-## Custom Validate
+### Custom Validate
 
 ```js
 /**
@@ -97,31 +107,58 @@ User.schema.path('name').validate(function(v) {
 });
 ```
 
-## Methods
+## Schema.prototype
 
 ```js
 const mongoose = require('mongoose');
-const userSchema = new mongoose.Schema({
-    //定义类似于JavaScript原型的结构
+const UserSchema = new Schema({
     firstName: String,
-    secondName: String,
+    lastName: String,
 });
+```
+
+### Schema.prototype.method()
+
+Adds an instance method to documents constructed from Models compiled from this schema.
+
+```js
 /**
  * 加入实例方法
- * schema.methods.xxx
+ * 需要 new User() 之后才能调用
  */
-userSchema.methods.getAllName = function() {
+UserSchema.method('getFullName', function() {
     //this等于对象本身，即原型！可以调用任意的api，无限制，只要表现在于定义的形式
-    return this.firstName + '.' + this.secondName;
-};
+    return `${this.firstName} ${this.lastName}`;
+});
+
+//创建实际的类
+const User = mongoose.model('User', userSchema);
+
+const user = new User({ firstName: 'Jan', lastName: 'Snow' });
+const fullName = user.getFullName(); // "Jan Snow"
+```
+
+### Schema.prototype.static()
+
+Adds static "class" methods to Models compiled from this schema.
+
+```js
 /**
  * 加入静态方法
- * schema.statics.xxx
  */
-schema.statics.getAll = function(cb) {
+
+UserSchema.static('getAllUser', function(cb) {
     //this这个时候等于集合，即集合底层的users，因此可以对数据库进行操纵
     return this.find({}, cb); //也可以加入回调函数
-};
+});
+const users = await User.getAllUser();
+```
+
+### Schema.prototype.virtual()
+
+Creates a virtual type with the given name.
+
+```js
 /**
  * 加入虚拟setter/getter方法
  * virtual("xxx").get(handle)
@@ -134,19 +171,29 @@ userSchema.virtual('allname').set(function(v) {
     this.firstName = v.firstName;
     this.secondName = v.secondName;
 });
-const User = mongoose.model('User', userSchema); //创建实际的类
+```
 
-//测试调用
-const u = new User({
-    firstName: 'hong',
-    secondName: 'meiting',
+### Schema.prototype.pre()
+
+Schema.prototype.pre(method, [options], cb)
+
+```js
+// 前置钩子
+// 在执行数据看查找前做些处理
+UserSchema.pre('find', function(next) {
+    if (this.firstName) return next();
+    // do something
+    next();
 });
-console.log(u.getAllName()); //打印hong.meiting，此为对象实例方法的调用
-User.getAll().then(result => {
-    console.log('调用静态方法成功，查询到数据库了');
+```
+
+### Schema.prototype.post()
+
+Schema.prototype.post(method, [options], cb)
+
+```js
+// 在查找到数据后做些处理
+UserSchema.post('find', function(doc) {
+    console.log('doc', doc);
 });
-const u2 = new User({
-    allname: { firstName: 'hong', secondName: 'meting' },
-});
-console.log(u2); //打印出 firstName: "hong",secondName: "meting"，已经在虚拟方法中被赋值了
 ```
