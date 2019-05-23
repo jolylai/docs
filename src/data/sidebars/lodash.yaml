@@ -7,3 +7,5 @@
           link: /reference/lodash/compact
         - title: flatten
           link: /reference/lodash/flatten
+        - title: difference
+          link: /reference/lodash/difference
