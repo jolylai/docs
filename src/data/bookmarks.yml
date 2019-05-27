@@ -67,3 +67,9 @@
   published_at: '2019-05-17'
   tags:
     - 'Icon'
+- title: 'Whimsical'
+  favicon: 'https://whimsical.com/assets/images/favicon-32-aaa1c3af8bc920fad0ba51f6de91fc0370d6d4dcead226605662c17b68fb274a.png'
+  slug: 'https://whimsical.com/'
+  published_at: '2019-05-24'
+  tags:
+    - 'Image'

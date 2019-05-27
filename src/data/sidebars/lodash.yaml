@@ -9,3 +9,13 @@
           link: /reference/lodash/flatten
         - title: difference
           link: /reference/lodash/difference
+    - group: Lang
+      items:
+        - title: isEmpty
+          link: /reference/lodash/isEmpty
+        - title: isNil
+          link: /reference/lodash/isNil
+        - title: isNull
+          link: /reference/lodash/isNull
+        - title: difference
+          link: /reference/lodash/difference
