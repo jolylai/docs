@@ -12,11 +12,11 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.9.2",
-    "@types/node": "^22.9.3",
+    "@antfu/eslint-config": "^3.11.0",
+    "@types/node": "^22.10.0",
     "automd": "^0.3.12",
     "eslint": "^9.15.0",
-    "mdbox": "^0.1.0",
+    "mdbox": "^0.1.1",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
     "vitepress": "^1.5.0"
